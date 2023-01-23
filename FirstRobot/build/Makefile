@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mira/FirstRobot
+CMAKE_SOURCE_DIR = /home/mira/Robotics/FirstRobot
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mira/FirstRobot/build
+CMAKE_BINARY_DIR = /home/mira/Robotics/FirstRobot/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mira/FirstRobot/build/CMakeFiles /home/mira/FirstRobot/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mira/Robotics/FirstRobot/build/CMakeFiles /home/mira/Robotics/FirstRobot/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mira/FirstRobot/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mira/Robotics/FirstRobot/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -109,19 +109,6 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named test
-
-# Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test
-.PHONY : test
-
-# fast build rule for target.
-test/fast:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
-.PHONY : test/fast
 
 #=============================================================================
 # Target rules for targets named hello
@@ -163,33 +150,6 @@ script/hello.cpp.s:
 	$(MAKE) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/script/hello.cpp.s
 .PHONY : script/hello.cpp.s
 
-script/test.o: script/test.cpp.o
-
-.PHONY : script/test.o
-
-# target to build an object file
-script/test.cpp.o:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/script/test.cpp.o
-.PHONY : script/test.cpp.o
-
-script/test.i: script/test.cpp.i
-
-.PHONY : script/test.i
-
-# target to preprocess a source file
-script/test.cpp.i:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/script/test.cpp.i
-.PHONY : script/test.cpp.i
-
-script/test.s: script/test.cpp.s
-
-.PHONY : script/test.s
-
-# target to generate assembly for a file
-script/test.cpp.s:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/script/test.cpp.s
-.PHONY : script/test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -198,14 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... hello"
 	@echo "... script/hello.o"
 	@echo "... script/hello.i"
 	@echo "... script/hello.s"
-	@echo "... script/test.o"
-	@echo "... script/test.i"
-	@echo "... script/test.s"
 .PHONY : help
 
 

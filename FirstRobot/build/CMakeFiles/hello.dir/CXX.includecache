@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/mira/FirstRobot/script/hello.cpp
+/home/mira/Robotics/FirstRobot/script/hello.cpp
 gazebo/gazebo.hh
 -
 

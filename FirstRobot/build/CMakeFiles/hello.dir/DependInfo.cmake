@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mira/FirstRobot/script/hello.cpp" "/home/mira/FirstRobot/build/CMakeFiles/hello.dir/script/hello.cpp.o"
+  "/home/mira/Robotics/FirstRobot/script/hello.cpp" "/home/mira/Robotics/FirstRobot/build/CMakeFiles/hello.dir/script/hello.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
