@@ -1,0 +1,4 @@
+/home/mira/FirstRobot/build/CMakeFiles/rebuild_cache.dir
+/home/mira/FirstRobot/build/CMakeFiles/edit_cache.dir
+/home/mira/FirstRobot/build/CMakeFiles/test.dir
+/home/mira/FirstRobot/build/CMakeFiles/hello.dir
