@@ -6,4 +6,4 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("first_pkg")
-subdirs("simple_arm_")
+subdirs("simple_arm")

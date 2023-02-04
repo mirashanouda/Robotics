@@ -1,38 +1,3 @@
-<launch>
-  <!--Include description and control launch files-->
-  <include file="$(find simple_arm)/launch/robot_description.xml"/>
-  <include file="$(find simple_arm)/launch/robot_control.xml"/>
-
-  <!--Launch a gazebo world-->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find simple_arm)/worlds/willow_garage.world"/>
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
-  </include>
-
-  <!--spawn a robot in gazebo world-->
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-  args="-urdf -param robot_description -x 0 -y 0 -z 0 -R 0 -P 0 -Y 0 -model simple_arm"/>
-
-  <!-- The arm mover node -->
-  <node name="arm_mover" type="arm_mover" pkg="simple_arm" output="screen">
-    <rosparam>
-      min_joint_1_angle: 0
-      max_joint_1_angle: 1.57
-      min_joint_2_angle: 0
-      max_joint_2_angle: 1.0
-    </rosparam>
-  </node>
-  
-</launch>
-
-
-
-
-
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
 #include "simple_arm/GoToPosition.h" //service
@@ -44,7 +9,6 @@ using namespace std_msgs;
 
 // Global joint publisher variables
 Publisher joint1_pub, joint2_pub;
-
 
 // This function checks and clamps the joint angles to a safe zone
 vector<float> clamp_at_boundaries(float requested_j1, float requested_j2)
@@ -127,14 +91,3 @@ int main(int argc, char** argv){
 
     return 0;
 }
-
-
-
-
-
-
-add_executable(arm_mover src/arm_mover.cpp)
-target_link_libraries(arm_mover ${catkin_LIBRARIES})
-add_dependencies(arm_mover simple_arm_generate_messages_cpp)
-
-
