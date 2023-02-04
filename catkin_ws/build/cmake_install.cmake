@@ -132,7 +132,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/mira/Robotics/catkin_ws/build/gtest/cmake_install.cmake")
   include("/home/mira/Robotics/catkin_ws/build/first_pkg/cmake_install.cmake")
-  include("/home/mira/Robotics/catkin_ws/build/simple_arm/cmake_install.cmake")
+  include("/home/mira/Robotics/catkin_ws/build/simple_arm_/cmake_install.cmake")
 
 endif()
 

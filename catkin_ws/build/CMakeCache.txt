@@ -522,10 +522,10 @@ rospack_DIR:PATH=/opt/ros/noetic/share/rospack/cmake
 rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
 
 //Value Computed by CMake
-simple_arm_BINARY_DIR:STATIC=/home/mira/Robotics/catkin_ws/build/simple_arm
+simple_arm_BINARY_DIR:STATIC=/home/mira/Robotics/catkin_ws/build/simple_arm_
 
 //Value Computed by CMake
-simple_arm_SOURCE_DIR:STATIC=/home/mira/Robotics/catkin_ws/src/simple_arm
+simple_arm_SOURCE_DIR:STATIC=/home/mira/Robotics/catkin_ws/src/simple_arm_
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake

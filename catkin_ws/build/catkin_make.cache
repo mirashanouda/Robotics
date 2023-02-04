@@ -1,2 +1,2 @@
-first_pkg:simple_arm
+first_pkg:simple_arm_
 -DCATKIN_DEVEL_PREFIX=/home/mira/Robotics/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mira/Robotics/catkin_ws/install -G Unix Makefiles
