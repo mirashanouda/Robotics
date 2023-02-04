@@ -1,0 +1,354 @@
+<launch>
+  <!--Include description and control launch files-->
+  <include file="$(find simple_arm)/launch/robot_description.xml"/>
+  <include file="$(find simple_arm)/launch/robot_control.xml"/>
+
+  <!--Launch a gazebo world-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find simple_arm)/worlds/willow_garage.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!--spawn a robot in gazebo world-->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+  args="-urdf -param robot_description -x 0 -y 0 -z 0 -R 0 -P 0 -Y 0 -model simple_arm"/>
+
+  <!-- The arm mover node -->
+  <node name="arm_mover" type="arm_mover" pkg="simple_arm" output="screen">
+    <rosparam>
+      min_joint_1_angle: 0
+      max_joint_1_angle: 1.57
+      min_joint_2_angle: 0
+      max_joint_2_angle: 1.0
+    </rosparam>
+  </node>
+  
+</launch>
+
+
+
+
+
+#include "ros/ros.h"
+#include "std_msgs/Float64.h"
+#include "simple_arm/GoToPosition.h" //service
+
+using namespace ros;
+using namespace std;
+using namespace std_msgs;
+// using namespace simple_arm::GoToPosition; //used to call the type request&responce
+
+// Global joint publisher variables
+Publisher joint1_pub, joint2_pub;
+
+
+// This function checks and clamps the joint angles to a safe zone
+vector<float> clamp_at_boundaries(float requested_j1, float requested_j2)
+{
+    // Define clamped joint angles and assign them to the requested ones
+    float clamped_j1 = requested_j1;
+    float clamped_j2 = requested_j2;
+
+    // Get min and max joint parameters, and assigning them to their respective variables
+    float min_j1, max_j1, min_j2, max_j2;
+    // Assign a new node handle since we have no access to the main one
+    NodeHandle n2;
+    // Get node name
+    string node_name = this_node::getName();
+    // Get joints min and max parameters
+    n2.getParam(node_name + "/min_joint_1_angle", min_j1);
+    n2.getParam(node_name + "/max_joint_1_angle", max_j1);
+    n2.getParam(node_name + "/min_joint_2_angle", min_j2);
+    n2.getParam(node_name + "/max_joint_2_angle", max_j2);
+
+    // Check if joint 1 falls in the safe zone, otherwise clamp it
+    if (requested_j1 < min_j1 || requested_j1 > max_j1) {
+        clamped_j1 = min(max(requested_j1, min_j1), max_j1);
+        ROS_WARN("j1 is out of bounds, valid range (%1.2f,%1.2f), clamping to: %1.2f", min_j1, max_j1, clamped_j1);
+    }
+    // Check if joint 2 falls in the safe zone, otherwise clamp it
+    if (requested_j2 < min_j2 || requested_j2 > max_j2) {
+        clamped_j2 = min(max(requested_j2, min_j2), max_j2);
+        ROS_WARN("j2 is out of bounds, valid range (%1.2f,%1.2f), clamping to: %1.2f", min_j2, max_j2, clamped_j2);
+    }
+
+    // Store clamped joint angles in a clamped_data vector
+    return { clamped_j1, clamped_j2 };
+}
+
+bool handle_safe_move_request(
+    simple_arm::GoToPosition::Request& req, 
+    simple_arm::GoToPosition::Response& res){
+
+    ROS_INFO("GoToPositionRequest received - j1:%1.2f, j2:%1.2f", (float)req.joint_1, (float)req.joint_2);
+
+    // Check if requested joint angles are in the safe zone, otherwise clamp them
+    vector<float> joints_angles = clamp_at_boundaries(req.joint_1, req.joint_2);
+
+    // Publish clamped joint angles to the arm
+    Float64 joint1_angle, joint2_angle;
+
+    joint1_angle.data = joints_angles[0];
+    joint2_angle.data = joints_angles[1];
+
+    joint1_pub.publish(joint1_angle);
+    joint2_pub.publish(joint2_angle);
+
+    // Wait 3 seconds for arm to settle
+    Duration(3).sleep();
+
+    // Return a response message
+    res.msg_feedback = "Joint angles set - j1: " + to_string(joints_angles[0]) + " , j2: " + to_string(joints_angles[1]);
+    ROS_INFO_STREAM(res.msg_feedback);
+
+    return true;
+}
+
+int main(int argc, char** argv){
+    
+    init(argc, argv, "arm_mover");
+    NodeHandle nh;
+
+    // Publisher: advertise<message_type>("/topic_name", queue_size);
+    joint1_pub = nh.advertise<Float64>("/simple_arm/joint_1_position_controller/command", 10);
+    joint2_pub = nh.advertise<Float64>("/simple_arm/joint_2_position_controller/command", 10);
+
+    // safe_move service with a handle_safe_move_request callback function
+    // Best practice is to name the surive recedding by the node name
+    ServiceServer service = nh.advertiseService("/arm_mover/safe_move", handle_safe_move_request);
+
+    ROS_INFO("Ready to send joint commands");
+
+    ros::spin();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+cmake_minimum_required(VERSION 2.8.3)
+project(simple_arm)
+
+## Add support for C++11, supported in ROS Kinetic and newer
+# add_definitions(-std=c++11)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS
+	std_msgs
+	message_generation
+	controller_manager
+)
+
+## System dependencies are found with CMake's conventions
+# find_package(Boost REQUIRED COMPONENTS system)
+
+
+## Uncomment this if the package has a setup.py. This macro ensures
+## modules and global scripts declared therein get installed
+## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
+# catkin_python_setup()
+
+################################################
+## Declare ROS messages, services and actions ##
+################################################
+
+## To declare and build messages, services or actions from within this
+## package, follow these steps:
+## * Let MSG_DEP_SET be the set of packages whose message types you use in
+##   your messages/services/actions (e.g. std_msgs, actionlib_msgs, ...).
+## * In the file package.xml:
+##   * add a build_depend tag for "message_generation"
+##   * add a build_depend and a run_depend tag for each package in MSG_DEP_SET
+##   * If MSG_DEP_SET isn't empty the following dependency has been pulled in
+##     but can be declared for certainty nonetheless:
+##     * add a run_depend tag for "message_runtime"
+## * In this file (CMakeLists.txt):
+##   * add "message_generation" and every package in MSG_DEP_SET to
+##     find_package(catkin REQUIRED COMPONENTS ...)
+##   * add "message_runtime" and every package in MSG_DEP_SET to
+##     catkin_package(CATKIN_DEPENDS ...)
+##   * uncomment the add_*_files sections below as needed
+##     and list every .msg/.srv/.action file to be processed
+##   * uncomment the generate_messages entry below
+##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
+
+## Generate messages in the 'msg' folder
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
+
+### Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  GoToPosition.srv
+)
+
+## Generate actions in the 'action' folder
+# add_action_files(
+#   FILES
+#   Action1.action
+#   Action2.action
+# )
+
+### Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  std_msgs  # Or other packages containing msgs
+)
+
+################################################
+## Declare ROS dynamic reconfigure parameters ##
+################################################
+
+## To declare and build dynamic reconfigure parameters within this
+## package, follow these steps:
+## * In the file package.xml:
+##   * add a build_depend and a run_depend tag for "dynamic_reconfigure"
+## * In this file (CMakeLists.txt):
+##   * add "dynamic_reconfigure" to
+##     find_package(catkin REQUIRED COMPONENTS ...)
+##   * uncomment the "generate_dynamic_reconfigure_options" section below
+##     and list every .cfg file to be processed
+
+## Generate dynamic reconfigure parameters in the 'cfg' folder
+# generate_dynamic_reconfigure_options(
+#   cfg/DynReconf1.cfg
+#   cfg/DynReconf2.cfg
+# )
+
+###################################
+## catkin specific configuration ##
+###################################
+## The catkin_package macro generates cmake config files for your package
+## Declare things to be passed to dependent projects
+## INCLUDE_DIRS: uncomment this if you package contains header files
+## LIBRARIES: libraries you create in this project that dependent projects also need
+## CATKIN_DEPENDS: catkin_packages dependent projects also need
+## DEPENDS: system dependencies of this project that dependent projects also need
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES simple_arm
+#  CATKIN_DEPENDS other_catkin_pkg
+#  DEPENDS system_lib
+)
+
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+## Your package locations should be listed before other locations
+# include_directories(include)
+
+## Declare a C++ library
+# add_library(${PROJECT_NAME}
+#   src/${PROJECT_NAME}/simple_arm.cpp
+# )
+
+## Add cmake target dependencies of the library
+## as an example, code may need to be generated before libraries
+## either from message generation or dynamic reconfigure
+# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+## Declare a C++ executable
+## With catkin_make all packages are built within a single CMake context
+## The recommended prefix ensures that target names across packages don't collide
+# add_executable(${PROJECT_NAME}_node src/simple_arm_node.cpp)
+
+## Rename C++ executable without prefix
+## The above recommended prefix causes long target names, the following renames the
+## target back to the shorter version for ease of user use
+## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
+# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
+
+## Add cmake target dependencies of the executable
+## same as for the library above
+# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+## Specify libraries to link a library or executable target against
+# target_link_libraries(${PROJECT_NAME}_node
+#   ${catkin_LIBRARIES}
+# )
+
+#############
+## Install ##
+#############
+
+# all install targets should use catkin DESTINATION variables
+# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
+
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+# install(PROGRAMS
+#   scripts/my_python_script
+#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark executables and/or libraries for installation
+# install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
+#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark cpp header files for installation
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
+
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+
+#############
+## Testing ##
+#############
+
+## Add gtest based cpp test target and link libraries
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_simple_arm.cpp)
+# if(TARGET ${PROJECT_NAME}-test)
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# endif()
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)
+
+add_compile_options(-std=c++11)
+
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(simple_mover src/simple_mover.cpp)
+target_link_libraries(simple_mover ${catkin_LIBRARIES})
+add_dependencies(simple_mover simple_arm_generate_messages_cpp)
+
+add_executable(arm_mover src/arm_mover.cpp)
+target_link_libraries(arm_mover ${catkin_LIBRARIES})
+add_dependencies(arm_mover simple_arm_generate_messages_cpp)
+
+
+
+
+float64 joint_1
+float64 joint_2
+---
+string msg_feedback
