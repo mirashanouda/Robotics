@@ -82,7 +82,7 @@ int main(int argc, char** argv){
     joint2_pub = nh.advertise<Float64>("/simple_arm/joint_2_position_controller/command", 10);
 
     // safe_move service with a handle_safe_move_request callback function
-    // Best practice is to name the surive recedding by the node name
+    // Best practice is to name the service pecedding by the node name
     ServiceServer service = nh.advertiseService("/arm_mover/safe_move", handle_safe_move_request);
 
     ROS_INFO("Ready to send joint commands");

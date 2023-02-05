@@ -662,6 +662,19 @@ controller_manager_msgs_generate_messages_py/fast:
 .PHONY : controller_manager_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named look_away
+
+# Build rule for target.
+look_away: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 look_away
+.PHONY : look_away
+
+# fast build rule for target.
+look_away/fast:
+	$(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/build
+.PHONY : look_away/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -790,6 +803,7 @@ help:
 	@echo "... controller_manager_msgs_generate_messages_nodejs"
 	@echo "... simple_arm_generate_messages"
 	@echo "... controller_manager_msgs_generate_messages_py"
+	@echo "... look_away"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... simple_arm_genlisp"
 	@echo "... _simple_arm_generate_messages_check_deps_GoToPosition"

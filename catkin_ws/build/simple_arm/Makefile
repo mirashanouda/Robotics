@@ -588,6 +588,21 @@ controller_manager_msgs_generate_messages_py/fast:
 .PHONY : controller_manager_msgs_generate_messages_py/fast
 
 # Convenience name for target.
+simple_arm/CMakeFiles/look_away.dir/rule:
+	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 simple_arm/CMakeFiles/look_away.dir/rule
+.PHONY : simple_arm/CMakeFiles/look_away.dir/rule
+
+# Convenience name for target.
+look_away: simple_arm/CMakeFiles/look_away.dir/rule
+
+.PHONY : look_away
+
+# fast build rule for target.
+look_away/fast:
+	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/build
+.PHONY : look_away/fast
+
+# Convenience name for target.
 simple_arm/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 simple_arm/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 .PHONY : simple_arm/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
@@ -704,6 +719,33 @@ src/arm_mover.cpp.s:
 	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f simple_arm/CMakeFiles/arm_mover.dir/build.make simple_arm/CMakeFiles/arm_mover.dir/src/arm_mover.cpp.s
 .PHONY : src/arm_mover.cpp.s
 
+src/look_away.o: src/look_away.cpp.o
+
+.PHONY : src/look_away.o
+
+# target to build an object file
+src/look_away.cpp.o:
+	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/src/look_away.cpp.o
+.PHONY : src/look_away.cpp.o
+
+src/look_away.i: src/look_away.cpp.i
+
+.PHONY : src/look_away.i
+
+# target to preprocess a source file
+src/look_away.cpp.i:
+	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/src/look_away.cpp.i
+.PHONY : src/look_away.cpp.i
+
+src/look_away.s: src/look_away.cpp.s
+
+.PHONY : src/look_away.s
+
+# target to generate assembly for a file
+src/look_away.cpp.s:
+	cd /home/mira/Robotics/catkin_ws/build && $(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/src/look_away.cpp.s
+.PHONY : src/look_away.cpp.s
+
 src/simple_mover.o: src/simple_mover.cpp.o
 
 .PHONY : src/simple_mover.o
@@ -772,6 +814,7 @@ help:
 	@echo "... controller_manager_msgs_generate_messages_nodejs"
 	@echo "... simple_arm_generate_messages"
 	@echo "... controller_manager_msgs_generate_messages_py"
+	@echo "... look_away"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... simple_arm_genlisp"
 	@echo "... _simple_arm_generate_messages_check_deps_GoToPosition"
@@ -781,6 +824,9 @@ help:
 	@echo "... src/arm_mover.o"
 	@echo "... src/arm_mover.i"
 	@echo "... src/arm_mover.s"
+	@echo "... src/look_away.o"
+	@echo "... src/look_away.i"
+	@echo "... src/look_away.s"
 	@echo "... src/simple_mover.o"
 	@echo "... src/simple_mover.i"
 	@echo "... src/simple_mover.s"

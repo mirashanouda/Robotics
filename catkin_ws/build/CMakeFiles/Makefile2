@@ -160,6 +160,7 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 simple_arm/all: simple_arm/CMakeFiles/simple_mover.dir/all
 simple_arm/all: simple_arm/CMakeFiles/arm_mover.dir/all
 simple_arm/all: simple_arm/CMakeFiles/simple_arm_generate_messages.dir/all
+simple_arm/all: simple_arm/CMakeFiles/look_away.dir/all
 
 .PHONY : simple_arm/all
 
@@ -197,6 +198,7 @@ simple_arm/clean: simple_arm/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/
 simple_arm/clean: simple_arm/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/clean
 simple_arm/clean: simple_arm/CMakeFiles/simple_arm_generate_messages.dir/clean
 simple_arm/clean: simple_arm/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/clean
+simple_arm/clean: simple_arm/CMakeFiles/look_away.dir/clean
 simple_arm/clean: simple_arm/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
 simple_arm/clean: simple_arm/CMakeFiles/simple_arm_genlisp.dir/clean
 simple_arm/clean: simple_arm/CMakeFiles/_simple_arm_generate_messages_check_deps_GoToPosition.dir/clean
@@ -484,7 +486,7 @@ first_pkg/CMakeFiles/_catkin_empty_exported_target.dir/clean:
 simple_arm/CMakeFiles/simple_mover.dir/all: simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/all
 	$(MAKE) -f simple_arm/CMakeFiles/simple_mover.dir/build.make simple_arm/CMakeFiles/simple_mover.dir/depend
 	$(MAKE) -f simple_arm/CMakeFiles/simple_mover.dir/build.make simple_arm/CMakeFiles/simple_mover.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=18,19 "Built target simple_mover"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=20,21 "Built target simple_mover"
 .PHONY : simple_arm/CMakeFiles/simple_mover.dir/all
 
 # Build rule for subdir invocation for target.
@@ -539,7 +541,7 @@ simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/all: simple_arm/CMakeF
 simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/all: simple_arm/CMakeFiles/_simple_arm_generate_messages_check_deps_GoToPosition.dir/all
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/depend
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=16,17 "Built target simple_arm_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=18,19 "Built target simple_arm_generate_messages_py"
 .PHONY : simple_arm/CMakeFiles/simple_arm_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -783,7 +785,7 @@ simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/all: simple_arm/CMake
 simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/all: simple_arm/CMakeFiles/_simple_arm_generate_messages_check_deps_GoToPosition.dir/all
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/depend
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=12,13 "Built target simple_arm_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=14,15 "Built target simple_arm_generate_messages_eus"
 .PHONY : simple_arm/CMakeFiles/simple_arm_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1240,6 +1242,33 @@ simple_arm/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/clean:
 .PHONY : simple_arm/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
+# Target rules for target simple_arm/CMakeFiles/look_away.dir
+
+# All Build rule for target.
+simple_arm/CMakeFiles/look_away.dir/all: simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/all
+	$(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/depend
+	$(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=11,12 "Built target look_away"
+.PHONY : simple_arm/CMakeFiles/look_away.dir/all
+
+# Build rule for subdir invocation for target.
+simple_arm/CMakeFiles/look_away.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mira/Robotics/catkin_ws/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 simple_arm/CMakeFiles/look_away.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mira/Robotics/catkin_ws/build/CMakeFiles 0
+.PHONY : simple_arm/CMakeFiles/look_away.dir/rule
+
+# Convenience name for target.
+look_away: simple_arm/CMakeFiles/look_away.dir/rule
+
+.PHONY : look_away
+
+# clean rule for target.
+simple_arm/CMakeFiles/look_away.dir/clean:
+	$(MAKE) -f simple_arm/CMakeFiles/look_away.dir/build.make simple_arm/CMakeFiles/look_away.dir/clean
+.PHONY : simple_arm/CMakeFiles/look_away.dir/clean
+
+#=============================================================================
 # Target rules for target simple_arm/CMakeFiles/std_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
@@ -1328,7 +1357,7 @@ simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/all: simple_arm/CMake
 simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/all: simple_arm/CMakeFiles/_simple_arm_generate_messages_check_deps_GoToPosition.dir/all
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/depend
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=11 "Built target simple_arm_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=13 "Built target simple_arm_generate_messages_cpp"
 .PHONY : simple_arm/CMakeFiles/simple_arm_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1356,7 +1385,7 @@ simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/all: simple_arm/CMak
 simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/all: simple_arm/CMakeFiles/_simple_arm_generate_messages_check_deps_GoToPosition.dir/all
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/depend
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=14 "Built target simple_arm_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=16 "Built target simple_arm_generate_messages_lisp"
 .PHONY : simple_arm/CMakeFiles/simple_arm_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1384,7 +1413,7 @@ simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/all: simple_arm/CM
 simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/all: simple_arm/CMakeFiles/_simple_arm_generate_messages_check_deps_GoToPosition.dir/all
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/depend
 	$(MAKE) -f simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/build.make simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=15 "Built target simple_arm_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mira/Robotics/catkin_ws/build/CMakeFiles --progress-num=17 "Built target simple_arm_generate_messages_nodejs"
 .PHONY : simple_arm/CMakeFiles/simple_arm_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
