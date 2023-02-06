@@ -38,7 +38,7 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-
+<!--
     <model name='Building'>
       <link name='Wall_1'>
         <pose>-11.6652 8.8 0 0 -0 0</pose>
@@ -2082,7 +2082,7 @@
       <allow_auto_disable>1</allow_auto_disable>
       <pose>4.57552 -0.187961 0 0 -0 0</pose>
     </model>
-
+-->
     <state world_name='default'>
       <sim_time>207 133000000</sim_time>
       <real_time>209 376716786</real_time>
