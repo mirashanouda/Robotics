@@ -11,11 +11,14 @@
   <arg name="yaw" default="0"/>
 
   <!-- Launch other relevant files-->
-  <!-- <include file="$(find my_robot)/launch/robot_description.launch"/> -->
-  <!-- (OR) Find my robot Description-->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_robot.xacro'"/>
+  <include file="$(find my_robot)/launch/robot_description.launch"/>
+  <!-- (OR) add my robot Description here directly--> 
 
-  <!-- World File -->
+  <!--launch rviz-->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
+
+
+  <!-- World File  -->
   <arg name="world_file" default="$(find my_robot)/worlds/my_world.world"/>
 
   <!-- Launch Gazebo World -->
