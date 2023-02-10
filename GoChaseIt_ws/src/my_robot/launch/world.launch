@@ -19,7 +19,7 @@
 
 
   <!-- World File  -->
-  <arg name="world_file" default="$(find my_robot)/worlds/my_world.world"/>
+  <arg name="world_file" default="$(find my_robot)/worlds/UdacityOffice"/>
 
   <!-- Launch Gazebo World -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
