@@ -47,9 +47,9 @@ root = tk.Tk()
 root.title("Arduino Signal Sender")
 root.geometry("594x594")
 
-img = tk.PhotoImage(file= "mine.png")
-bg_label = tk.Label(root, image=img)
-bg_label.grid(row=0, column=0, rowspan=10, columnspan=10)
+# img = tk.PhotoImage(file= "mine.png")
+# bg_label = tk.Label(root, image=img)
+# bg_label.grid(row=0, column=0, rowspan=10, columnspan=10)
 
 
 
