@@ -33,9 +33,9 @@ void image_processing_callback(const sensor_msgs::Image img)
     for (int i = 0; i < img.height * img.step; i++) {
         if (img.data[i] == 255) {
             ball_found = true;
-            if (i <= third) move(0.5, 0.2);
+            if (i <= third) move(0.5, -0.2);
             else if (i > third && i <= third*2) move(0.5, 0.0);
-            else if (i > third*2) move(0.5, -0.2);
+            else if (i > third*2) move(0.5, 0.2);
             break;
         }
     }
