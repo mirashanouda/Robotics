@@ -10,9 +10,9 @@ ServiceClient client;
 // This function calls the safe_move service to safely move the arm to the center position
 void move(float x, float z)
 {
-    ROS_INFO_STREAM("Moving the arm to the center");
+    // ROS_INFO_STREAM("speed: %f - ang: %f", x, z);
+    ROS_INFO("Request sent - x:%f, z:%f", x, z);
 
-    // Request centered joint angles [1.57, 1.57]
     ball_chaser::DriveToTarget srv;
     srv.request.lnr_x = x;
     srv.request.ang_z = z;
@@ -27,17 +27,19 @@ void image_processing_callback(const sensor_msgs::Image img)
 {
 
     bool ball_found = false;
-    int third = img.height/3;
+    int third = img.step/3;
 
     // Loop through each pixel in the image and check if its equal to the first one
     for (int i = 0; i < img.height * img.step; i++) {
         if (img.data[i] == 255) {
-            if (i <= third) move(1.0, -1.0);
-            if (i > third && i <= third*2) move(1.0, 0.0);
-            if (i > third*2) move(1.0, 1.0);
+            ball_found = true;
+            if (i <= third) move(0.5, 0.2);
+            else if (i > third && i <= third*2) move(0.5, 0.0);
+            else if (i > third*2) move(0.5, -0.2);
             break;
         }
     }
+    if (!ball_found) move(0, 0);
 }
 
 int main(int argc, char** argv)
