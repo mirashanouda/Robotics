@@ -11,7 +11,7 @@ ServiceClient client;
 void move(float x, float z)
 {
     // ROS_INFO_STREAM("speed: %f - ang: %f", x, z);
-    ROS_INFO("Request sent - x:%1.2f, z:%1.2f", x, z);
+    // ROS_INFO("Request sent - x:%1.2f, z:%1.2f", x, z);
 
     ball_chaser::DriveToTarget srv;
     srv.request.lnr_x = x;
@@ -33,13 +33,24 @@ void image_processing_callback(const sensor_msgs::Image img)
     for (int i = 0; i < img_size - 2; i+=3) {
         if (img.data[i] == 255 && img.data[i+1] == 255 && img.data[i+2] == 255) {
             ball_found = true;
-            if (i%img.step <= third) ROS_INFO("i:%d - mod:%d - left", i, i%img.step); //move(1, -0.8);
-            else if (i%img.step > third && i%img.step <= third*2) ROS_INFO("i:%d - mod:%d - forward", i, i%img.step); //move(1, 0.0);
-            else if (i%img.step > third*2) ROS_INFO("i:%d - mod:%d - right", i, i%img.step); //move(1, 0.8);
+            
+            int position = i%img.step;
+            if (position <= third) {
+                ROS_INFO("right");
+                move(1.0, -1.0);
+            }
+            else if (position > third && position <= third*2) {
+                ROS_INFO("forward");
+                move(1, 0.0);
+            }
+            else if (position > third*2) {
+                ROS_INFO("left");
+                move(1.0, 1.0);
+            }
             break;
         }
     }
-    if (!ball_found) ROS_INFO("stop"); //move(0, 0);
+    if (!ball_found) move(0, 0);
     
 }
 
