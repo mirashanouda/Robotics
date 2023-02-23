@@ -10,9 +10,6 @@ ServiceClient client;
 // This function calls the safe_move service to safely move the arm to the center position
 void move(float x, float z)
 {
-    // ROS_INFO_STREAM("speed: %f - ang: %f", x, z);
-    // ROS_INFO("Request sent - x:%1.2f, z:%1.2f", x, z);
-
     ball_chaser::DriveToTarget srv;
     srv.request.lnr_x = x;
     srv.request.ang_z = z;
@@ -35,9 +32,9 @@ void image_processing_callback(const sensor_msgs::Image img)
             ball_found = true;
             
             int position = i%img.step;
-            if (position <= third) move(1.0, -1.0);
-            else if (position > third && position <= third*2) move(1, 0.0);
-            else if (position > third*2) move(1.0, 1.0);
+            if (position <= third) move(0.5, -1.0);
+            else if (position > third && position <= third*2) move(0.5, 0.0);
+            else if (position > third*2) move(0.5, 1.0);
             break;
         }
     }

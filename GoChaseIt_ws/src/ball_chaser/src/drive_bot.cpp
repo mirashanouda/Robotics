@@ -14,7 +14,7 @@ bool handle_movement(
     ball_chaser::DriveToTarget::Request& req, 
     ball_chaser::DriveToTargetResponse& res){
 
-    ROS_INFO("Request received - x:%f, z:%f", (float)req.lnr_x, (float)req.ang_z);
+    ROS_INFO("Request received - x:%1.2f, z:%1.2f", (float)req.lnr_x, (float)req.ang_z);
 
     // Publish clamped joint angles to the arm
     geometry_msgs::Twist move;
@@ -23,12 +23,9 @@ bool handle_movement(
 
     move_pub.publish(move);
 
-    // Wait 3 seconds for arm to settle
-    Duration(3).sleep();
-
     // Return a response message
     res.back_msg = "back msg: Linear X: " + to_string(req.lnr_x) + " , Angular Z: " + to_string(req.ang_z);
-    ROS_INFO_STREAM(res.back_msg);
+    // ROS_INFO_STREAM(res.back_msg);
 
     return true;
 }
