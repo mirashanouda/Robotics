@@ -35,18 +35,9 @@ void image_processing_callback(const sensor_msgs::Image img)
             ball_found = true;
             
             int position = i%img.step;
-            if (position <= third) {
-                ROS_INFO("right");
-                move(1.0, -1.0);
-            }
-            else if (position > third && position <= third*2) {
-                ROS_INFO("forward");
-                move(1, 0.0);
-            }
-            else if (position > third*2) {
-                ROS_INFO("left");
-                move(1.0, 1.0);
-            }
+            if (position <= third) move(1.0, -1.0);
+            else if (position > third && position <= third*2) move(1, 0.0);
+            else if (position > third*2) move(1.0, 1.0);
             break;
         }
     }
