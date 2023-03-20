@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/ecl_lite/ecl_config/src/utilities/detect_posix.cpp
+iostream
+-
+unistd.h
+-
+cstdio
+-
+

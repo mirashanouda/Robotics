@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/install
+
+Name: ecl_converters
+Description: Description of ecl_converters
+Version: 0.62.3
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: ecl_config ecl_mpl ecl_errors ecl_exceptions ecl_type_traits ecl_concepts

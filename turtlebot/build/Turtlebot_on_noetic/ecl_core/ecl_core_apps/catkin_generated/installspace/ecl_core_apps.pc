@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/install
+
+Name: ecl_core_apps
+Description: Description of ecl_core_apps
+Version: 0.62.3
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

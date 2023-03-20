@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/install
+
+Name: ecl_config
+Description: Description of ecl_config
+Version: 0.61.6
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

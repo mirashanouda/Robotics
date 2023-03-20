@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: kobuki_random_walker
+Description: Description of kobuki_random_walker
+Version: 0.7.6
+Cflags: -I/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki/kobuki_random_walker/include
+Libs: -L${prefix}/lib -lkobuki_random_walker_nodelet
+Requires: ecl_threads geometry_msgs kobuki_msgs nodelet pluginlib roscpp std_msgs yocs_controllers

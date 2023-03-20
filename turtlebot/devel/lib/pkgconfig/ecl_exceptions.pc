@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: ecl_exceptions
+Description: Description of ecl_exceptions
+Version: 0.62.3
+Cflags: -I/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/ecl_core/ecl_exceptions/include
+Libs: -L${prefix}/lib -lecl_exceptions
+Requires: ecl_config ecl_errors

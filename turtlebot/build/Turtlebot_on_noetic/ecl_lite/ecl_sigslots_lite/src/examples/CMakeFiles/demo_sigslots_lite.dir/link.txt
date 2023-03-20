@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/demo_sigslots_lite.dir/sigslots.cpp.o  -o /home/mira/Robotics/turtlebot/devel/lib/ecl_sigslots_lite/demo_sigslots_lite 

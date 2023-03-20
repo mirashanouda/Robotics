@@ -1,0 +1,8 @@
+prefix=/home/user/catkin_ws/devel
+
+Name: summit_odometry
+Description: Description of summit_odometry
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/user/catkin_ws/devel/lib 
+Requires: 

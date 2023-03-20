@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: yocs_controllers
+Description: Description of yocs_controllers
+Version: 0.12.1
+Cflags: -I/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/yocs_controllers/include
+Libs: -L${prefix}/lib 
+Requires: roscpp

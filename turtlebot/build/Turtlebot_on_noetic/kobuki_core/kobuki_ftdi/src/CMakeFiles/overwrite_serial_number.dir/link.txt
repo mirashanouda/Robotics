@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/overwrite_serial_number.dir/overwrite_serial_number.cpp.o  -o /home/mira/Robotics/turtlebot/devel/lib/kobuki_ftdi/overwrite_serial_number  -lusb -lftdi 

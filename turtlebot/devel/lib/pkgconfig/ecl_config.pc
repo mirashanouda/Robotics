@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: ecl_config
+Description: Description of ecl_config
+Version: 0.61.6
+Cflags: -I/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/ecl_lite/ecl_config/include -I/home/mira/Robotics/turtlebot/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

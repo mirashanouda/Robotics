@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki_core/kobuki_ftdi/include/kobuki_ftdi/scanner.hpp
+vector
+-
+map
+-
+usb.h
+-
+stdint.h
+-
+
+/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki_core/kobuki_ftdi/include/kobuki_ftdi/writer.hpp
+cstring
+-
+ftdi.h
+-
+
+/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki_core/kobuki_ftdi/src/flasher.cpp
+iostream
+-
+../include/kobuki_ftdi/scanner.hpp
+/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki_core/kobuki_ftdi/include/kobuki_ftdi/scanner.hpp
+../include/kobuki_ftdi/writer.hpp
+/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki_core/kobuki_ftdi/include/kobuki_ftdi/writer.hpp
+

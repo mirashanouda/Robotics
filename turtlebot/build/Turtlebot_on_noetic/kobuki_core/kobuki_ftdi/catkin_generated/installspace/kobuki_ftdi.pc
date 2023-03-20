@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/install
+
+Name: kobuki_ftdi
+Description: Description of kobuki_ftdi
+Version: 0.7.12
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lusb -lftdi
+Requires: ecl_command_line

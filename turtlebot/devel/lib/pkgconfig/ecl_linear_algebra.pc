@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: ecl_linear_algebra
+Description: Description of ecl_linear_algebra
+Version: 0.62.3
+Cflags: -I/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/ecl_core/ecl_linear_algebra/include -I/usr/include/eigen3 -I/opt/ros/noetic/include
+Libs: -L${prefix}/lib -lecl_linear_algebra
+Requires: ecl_build ecl_eigen ecl_exceptions ecl_formatters ecl_math

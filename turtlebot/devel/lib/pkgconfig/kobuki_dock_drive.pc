@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: kobuki_dock_drive
+Description: Description of kobuki_dock_drive
+Version: 0.7.12
+Cflags: -I/home/mira/Robotics/turtlebot/src/Turtlebot_on_noetic/kobuki_core/kobuki_dock_drive/include
+Libs: -L${prefix}/lib -lkobuki_dock_drive
+Requires: ecl_threads ecl_geometry ecl_linear_algebra

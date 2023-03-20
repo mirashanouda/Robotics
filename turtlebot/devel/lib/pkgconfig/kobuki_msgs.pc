@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/devel
+
+Name: kobuki_msgs
+Description: Description of kobuki_msgs
+Version: 0.7.0
+Cflags: -I/home/mira/Robotics/turtlebot/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime std_msgs actionlib_msgs

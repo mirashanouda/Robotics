@@ -1,0 +1,8 @@
+prefix=/home/mira/Robotics/turtlebot/install
+
+Name: ecl_converters_lite
+Description: Description of ecl_converters_lite
+Version: 0.61.6
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

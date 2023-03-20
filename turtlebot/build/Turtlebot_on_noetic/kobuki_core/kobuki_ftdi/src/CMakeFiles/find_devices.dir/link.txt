@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/find_devices.dir/find_devices.cpp.o  -o /home/mira/Robotics/turtlebot/devel/lib/kobuki_ftdi/find_devices  -lusb 
